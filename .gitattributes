@@ -1,0 +1,16 @@
+# Normalise les fins de ligne dans le repo (LF), quelle que soit la config de chacun
+* text=auto
+
+# Scripts shell : toujours LF (sinon mvnw casse sur Mac/Linux)
+mvnw text eol=lf
+*.sh text eol=lf
+
+# Scripts Windows : toujours CRLF
+*.cmd text eol=crlf
+*.bat text eol=crlf
+
+# Fichiers binaires
+*.jar binary
+*.png binary
+*.jpg binary
+*.gif binary
