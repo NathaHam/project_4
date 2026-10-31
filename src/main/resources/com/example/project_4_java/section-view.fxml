@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4_java.SectionController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+        <ListView fx:id="sectionListView" VBox.vgrow="ALWAYS" />
+        <Button onAction="#loadSections" text="Refresh" />
+    </VBox>
+
+    <GridPane hgap="10.0" vgap="10.0" prefWidth="320.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="75.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label text="Course" GridPane.rowIndex="0" />
+        <ComboBox fx:id="courseComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Faculty" GridPane.rowIndex="1" />
+        <ComboBox fx:id="facultyComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Semester" GridPane.rowIndex="2" />
+        <TextField fx:id="semesterTextField" promptText="Fall 2026" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="Day" GridPane.rowIndex="3" />
+        <TextField fx:id="dayTextField" promptText="MW" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label text="Start Time" GridPane.rowIndex="4" />
+        <TextField fx:id="startTimeTextField" promptText="10:00" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+        <Label text="End Time" GridPane.rowIndex="5" />
+        <TextField fx:id="endTimeTextField" promptText="11:15" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Label text="Modality" GridPane.rowIndex="6" />
+        <ComboBox fx:id="modalityComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Button fx:id="addSectionButton" maxWidth="Infinity" onAction="#addSectionButtonClicked" text="Add Section" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Button fx:id="updateSectionButton" disable="true" maxWidth="Infinity" onAction="#updateSectionButtonClicked" text="Update Selected Section" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <Button maxWidth="Infinity" onAction="#clearForm" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    </GridPane>
+</HBox>

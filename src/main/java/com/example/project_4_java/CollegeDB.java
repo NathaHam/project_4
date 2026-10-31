@@ -272,4 +272,44 @@ public class CollegeDB {
         }
     }
 
+    public static ArrayList<Section> getSections() throws SQLException {
+        ArrayList<Section> sections = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+             ResultSet rs = connection.createStatement().executeQuery("SELECT * FROM Section")) {
+            while (rs.next()) {
+                sections.add(new Section(rs.getInt("ID"), rs.getInt("CourseID"), rs.getInt("FacultyID"),
+                        rs.getString("Semester"), rs.getString("Day"), rs.getString("StartTime"),
+                        rs.getString("EndTime"), rs.getString("Modality")));
+            }
+        }
+
+        return sections;
+    }
+
+    public static void addSection(Section section) throws SQLException {
+        saveSection(section, "INSERT into Section ( CourseID, FacultyID, Semester, Day, StartTime, EndTime, Modality ) values ( ?, ?, ?, ?, ?, ?, ? )");
+    }
+
+    public static void updateSection(Section section) throws SQLException {
+        saveSection(section, "update Section set CourseID = ?, FacultyID = ?, Semester = ?, Day = ?, StartTime = ?, EndTime = ?, Modality = ? where ID = ?");
+    }
+
+    private static void saveSection(Section section, String sql) throws SQLException {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, section.getCourseID());
+            preparedStatement.setInt(2, section.getFacultyID());
+            preparedStatement.setString(3, section.getSemester());
+            preparedStatement.setString(4, section.getDay());
+            preparedStatement.setString(5, section.getStartTime());
+            preparedStatement.setString(6, section.getEndTime());
+            preparedStatement.setString(7, section.getModality());
+            if (sql.startsWith("update")) {
+                preparedStatement.setInt(8, section.getID());
+            }
+            preparedStatement.execute();
+        }
+    }
+
 }

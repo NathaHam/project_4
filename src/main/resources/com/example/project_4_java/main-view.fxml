@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+    <Tab text="Students">
+        <fx:include source="hello-view.fxml" />
+    </Tab>
+    <Tab text="Sections">
+        <fx:include source="section-view.fxml" />
+    </Tab>
+</TabPane>
