@@ -55,6 +55,27 @@ public class CollegeDB {
         }
     }
 
+    public static void updateFaculty(Faculty faculty){
+        try {
+            Connection connection = getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "update faculty set FirstName = ?, LastName = ?, Department = ? where ID = ?");
+
+            // first value is index 1, it's ok to cry
+            preparedStatement.setString(1, faculty.getFirstName());
+            preparedStatement.setString(2, faculty.getLastName());
+            preparedStatement.setString(3, faculty.getDepartment());
+            preparedStatement.setInt(4, faculty.getID());
+
+            preparedStatement.execute();
+
+            connection.close();
+        } catch ( SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+        }
+    }
+
     public static ArrayList<Student> getStudent(int id){
         ArrayList<Student> students = new ArrayList<Student>();
 
@@ -165,6 +186,33 @@ public class CollegeDB {
         return courses;
     }
 
+    public static ArrayList<Faculty> getFaculties(){
+        ArrayList<Faculty> faculties = new ArrayList<Faculty>();
+
+        try {
+            Connection connection = getConnection();
+            Statement statement = connection.createStatement();
+            ResultSet facultiesQuery = statement.executeQuery(
+                    "SELECT * FROM Faculty");
+
+            while (facultiesQuery.next()) {
+                int id = facultiesQuery.getInt("ID");
+                String firstName = facultiesQuery.getString("FirstName");
+                String lastName = facultiesQuery.getString("LastName");
+                String department = facultiesQuery.getString("Department");
+
+                faculties.add(new Faculty(id, firstName, lastName, department));
+            }
+            facultiesQuery.close();
+
+            connection.close();
+        } catch ( SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+        }
+
+        return faculties;
+    }
+
     public static void addStudent(Student student){
         try {
             Connection connection = getConnection();
@@ -196,6 +244,25 @@ public class CollegeDB {
             preparedStatement.setInt(2, course.getNumber());
             preparedStatement.setString(3, course.getTitle());
             preparedStatement.setInt(4, course.getCredits());
+
+            preparedStatement.execute();
+
+            connection.close();
+        } catch ( SQLException e){
+            System.out.println("SQLException: " + e.getMessage());
+        }
+    }
+
+    public static void addFaculty(Faculty faculty){
+        try {
+            Connection connection = getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT into Faculty ( FirstName, LastName, Department) values ( ?, ?, ? )");
+
+            // first value is index 1, it's ok to cry
+            preparedStatement.setString(1, faculty.getFirstName());
+            preparedStatement.setString(2, faculty.getLastName());
+            preparedStatement.setString(3, faculty.getDepartment());
 
             preparedStatement.execute();
 
