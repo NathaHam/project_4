@@ -134,4 +134,5 @@ public class CollegeDB {
             System.out.println("SQLException: " + e.getMessage());
         }
     }
+
 }
