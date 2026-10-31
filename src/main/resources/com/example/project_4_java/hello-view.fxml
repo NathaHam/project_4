@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.project_4_java.HelloController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4_java.HelloController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <Label fx:id="welcomeText" />
+    <Button onAction="#onHelloButtonClick" text="Hello!" />
+    <TextField fx:id="studentFilterTextField" onKeyTyped="#studentFilterTyped" />
+    <ListView fx:id="studentListView" prefHeight="200.0" prefWidth="200.0" />
+    <Button fx:id="selectStudentButton" mnemonicParsing="false" onAction="#selectedStudentButtonClicked" text="Select Student" />
+    <TextField fx:id="firstNameTextField" promptText="First Name" />
+    <TextField fx:id="lastNameTextField" promptText="Last Name" />
+    <TextField fx:id="majorTextField" promptText="Major" />
+    <TextField fx:id="gpaTextField" promptText="GPA" />
+    <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#addStudentButtonClicked" text="Add Student" />
+    <Button fx:id="deleteStudentButton" mnemonicParsing="false" onAction="#deleteStudentButtonClicked" text="Delete Selected Student" />
 </VBox>
