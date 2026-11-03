@@ -1,5 +1,6 @@
 package com.example.project_4_java;
 
+import javax.imageio.plugins.jpeg.JPEGImageReadParam;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -309,6 +310,71 @@ public class CollegeDB {
                 preparedStatement.setInt(8, section.getID());
             }
             preparedStatement.execute();
+        }
+    }
+
+    public static ArrayList<Enrollment> getEnrollment() throws SQLException {
+        ArrayList<Enrollment> enrollments = new ArrayList<>();
+
+        try (Connection connection = getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery("SELECT * FROM Enrollment"))
+        {
+            while (rs.next()) {
+                enrollments.add(new Enrollment(
+                        rs.getInt("ID"),
+                        rs.getInt("StudentID"),
+                        rs.getInt("CourseID"),
+                        rs.getString("Grade")
+                ));
+            }
+        }
+
+        return enrollments;
+    }
+
+    public static void addEnrollment (Enrollment enrollment) throws SQLException {
+        String sql = "INSERT INTO Enrollment (StudentID, CourseID, Grade) VALUES (?, ?, ?)";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, enrollment.getStudentID());
+            preparedStatement.setInt(2, enrollment.getCourseID());
+            preparedStatement.setString(3, enrollment.getGrade());
+
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public static void updateEnrollment (Enrollment enrollment) throws SQLException {
+        String sql ="UPDATE Enrollment Set StudentID = ?, CourseID = ?, Grade = ? WHERE ID = ?";
+
+        try(Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, enrollment.getStudentID());
+            preparedStatement.setInt(2, enrollment.getCourseID());
+            preparedStatement.setString(3, enrollment.getGrade());
+            preparedStatement.setInt(4, enrollment.getID());
+
+            preparedStatement.executeUpdate();
+        }
+    }
+
+    public static boolean deleteEnrollment (Enrollment enrollment) {
+        String sql = "DELETE FROM Enrollment WHERE ID = ?";
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setInt(1, enrollment.getID());
+
+            return preparedStatement.executeUpdate() > 0;
+
+        } catch (SQLException e){
+            System.out.println("SQLException: "+ e.getMessage());
+            return false;
         }
     }
 
