@@ -9,4 +9,7 @@
     <Tab text="Sections">
         <fx:include source="section-view.fxml" />
     </Tab>
+    <Tab text="Courses">
+        <fx:include source="course-view.fxml" />
+    </Tab>
 </TabPane>

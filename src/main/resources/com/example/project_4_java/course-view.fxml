@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4_java.CourseController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+        <ListView fx:id="courseListView" onMouseClicked="#courseSelected" VBox.vgrow="ALWAYS" />
+        <Button onAction="#loadCourses" text="Refresh" />
+    </VBox>
+
+    <GridPane hgap="10.0" vgap="10.0" prefWidth="320.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="75.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label text="Course" GridPane.rowIndex="0" />
+        <TextField fx:id="courseTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="Department" GridPane.rowIndex="1" />
+        <TextField fx:id="departmentTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Number" GridPane.rowIndex="2" />
+        <TextField fx:id="numberTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="credits" GridPane.rowIndex="3" />
+        <TextField fx:id="creditsTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button fx:id="addCourseButton" maxWidth="Infinity" onAction="#addCourseButtonClicked" text="Add Course" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Button fx:id="updateCourseButton" disable="true" maxWidth="Infinity" onAction="#updateCourseButtonClicked" text="Update Selected Course" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <Button maxWidth="Infinity" onAction="#clearForm" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+    </GridPane>
+</HBox>
