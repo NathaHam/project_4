@@ -15,4 +15,7 @@
     <Tab text="Faculty">
         <fx:include source="faculty-view.fxml" />
     </Tab>
+    <Tab text="Enrollments">
+        <fx:include source="enrollment-view.fxml" />
+    </Tab>
 </TabPane>

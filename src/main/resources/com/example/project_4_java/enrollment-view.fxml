@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="20.0"
+      xmlns="http://javafx.com/javafx/17.0.12"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.project_4_java.EnrollmentController">
+
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+        <ListView fx:id="enrollmentListView" HBox.hgrow="ALWAYS" />
+        <Button onAction="#loadEnrollments" text="Refresh" />
+    </VBox>
+
+    <GridPane hgap="10.0" vgap="10.0" prefWidth="320.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="75.0" />
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+
+        <Label text="Student" GridPane.rowIndex="0"/>
+        <ComboBox fx:id="studentComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Label text="Section" GridPane.rowIndex="1"/>
+        <ComboBox fx:id="sectionComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label text="Grade" GridPane.rowIndex="2"/>
+        <ComboBox fx:id="gradeComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Button maxWidth="Infinity" onAction="#addEnrollmentButtonClicked" text="Add Enrollment" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Button fx:id="updateEnrollmentButton" disable="true" maxWidth="Infinity" onAction="#updateEnrollmentButtonClicked" text="Update Selected Enrollment" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <Button maxWidth="Infinity" onAction="#clearForm" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+    </GridPane>
+</HBox>
+
+

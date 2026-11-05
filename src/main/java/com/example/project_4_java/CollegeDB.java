@@ -324,7 +324,7 @@ public class CollegeDB {
                 enrollments.add(new Enrollment(
                         rs.getInt("ID"),
                         rs.getInt("StudentID"),
-                        rs.getInt("CourseID"),
+                        rs.getInt("SectionID"),
                         rs.getString("Grade")
                 ));
             }
@@ -334,13 +334,13 @@ public class CollegeDB {
     }
 
     public static void addEnrollment (Enrollment enrollment) throws SQLException {
-        String sql = "INSERT INTO Enrollment (StudentID, CourseID, Grade) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Enrollment (StudentID, SectionID, Grade) VALUES (?, ?, ?)";
 
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, enrollment.getStudentID());
-            preparedStatement.setInt(2, enrollment.getCourseID());
+            preparedStatement.setInt(2, enrollment.getSectionID());
             preparedStatement.setString(3, enrollment.getGrade());
 
             preparedStatement.executeUpdate();
@@ -348,13 +348,13 @@ public class CollegeDB {
     }
 
     public static void updateEnrollment (Enrollment enrollment) throws SQLException {
-        String sql ="UPDATE Enrollment Set StudentID = ?, CourseID = ?, Grade = ? WHERE ID = ?";
+        String sql ="UPDATE Enrollment Set StudentID = ?, SectionID = ?, Grade = ? WHERE ID = ?";
 
         try(Connection connection = getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, enrollment.getStudentID());
-            preparedStatement.setInt(2, enrollment.getCourseID());
+            preparedStatement.setInt(2, enrollment.getSectionID());
             preparedStatement.setString(3, enrollment.getGrade());
             preparedStatement.setInt(4, enrollment.getID());
 

@@ -4,13 +4,13 @@ public class Enrollment {
 
     private int ID;
     private int studentID;
-    private int courseID;
+    private int SectionID;
     private String grade;
 
-    public Enrollment(int ID, int studentID, int courseID, String grade) {
+    public Enrollment(int ID, int studentID, int SectionID, String grade) {
         this.ID = ID;
         this.studentID = studentID;
-        this.courseID = courseID;
+        this.SectionID = SectionID;
         this.grade = grade;
     }
 
@@ -30,12 +30,12 @@ public class Enrollment {
         this.studentID = studentID;
     }
 
-    public int getCourseID() {
-        return courseID;
+    public int getSectionID() {
+        return SectionID;
     }
 
-    public void setCourseID(int courseID) {
-        this.courseID = courseID;
+    public void setSectionID(int SectionID) {
+        this.SectionID = SectionID;
     }
 
     public String getGrade() {
@@ -51,7 +51,7 @@ public class Enrollment {
         return "Enrollment{" +
                 "ID=" + ID +
                 ", studentID=" + studentID +
-                ", courseID=" +courseID +
+                ", SectionID=" +SectionID +
                 ", grade='" + grade +'\'' +
                 '}';
     }
@@ -68,7 +68,7 @@ public class Enrollment {
 
         return ID == enrollment.ID
                 && studentID == enrollment.studentID
-                && courseID == enrollment.courseID
+                && SectionID == enrollment.SectionID
                 && java.util.Objects.equals(grade, enrollment.grade);
     }
 
