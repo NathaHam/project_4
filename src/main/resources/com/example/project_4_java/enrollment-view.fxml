@@ -32,6 +32,7 @@
         <ComboBox fx:id="gradeComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Button maxWidth="Infinity" onAction="#addEnrollmentButtonClicked" text="Add Enrollment" GridPane.columnIndex="1" GridPane.rowIndex="7" />
         <Button fx:id="updateEnrollmentButton" disable="true" maxWidth="Infinity" onAction="#updateEnrollmentButtonClicked" text="Update Selected Enrollment" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+        <Button fx:id="deleteEnrollmentButton" disable="true" maxWidth="Infinity" onAction="#deleteEnrollmentButtonClicked" text="Delete Selected Enrollment " GridPane.columnIndex="1" GridPane.rowIndex="9"/>
         <Button maxWidth="Infinity" onAction="#clearForm" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="10" />
     </GridPane>
 </HBox>
