@@ -27,7 +27,7 @@
         <TextField fx:id="numberTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Label text="credits" GridPane.rowIndex="3" />
         <TextField fx:id="creditsTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button fx:id="addCourseButton" maxWidth="Infinity" onAction="#addCourseButtonClicked" text="Add Course" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+        <Button maxWidth="Infinity" onAction="#addCourseButtonClicked" text="Add Course" GridPane.columnIndex="1" GridPane.rowIndex="7" />
         <Button fx:id="updateCourseButton" disable="true" maxWidth="Infinity" onAction="#updateCourseButtonClicked" text="Update Selected Course" GridPane.columnIndex="1" GridPane.rowIndex="8" />
         <Button maxWidth="Infinity" onAction="#clearForm" text="Clear" GridPane.columnIndex="1" GridPane.rowIndex="9" />
     </GridPane>

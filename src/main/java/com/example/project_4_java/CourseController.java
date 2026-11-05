@@ -67,7 +67,7 @@ public class CourseController {
     private void save(boolean update) {
 
         int id;
-        
+
         if(update){
             id = courseListView.getSelectionModel().getSelectedItem().getID();
         }
