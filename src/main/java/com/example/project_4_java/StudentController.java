@@ -1,46 +1,30 @@
 package com.example.project_4_java;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.ArrayList;
 
-public class HelloController {
+public class StudentController {
 
     @FXML
     private ListView<Student> studentListView;
-
     @FXML
     private Label welcomeText;
-
     @FXML
     private TextField studentFilterTextField;
-
-
     @FXML
     private TextField firstNameTextField;
-
-
     @FXML
     private TextField lastNameTextField;
-
-
     @FXML
     private TextField majorTextField;
-
-
     @FXML
     private TextField gpaTextField;
-
     @FXML
     private Button selectStudentButton;
-
     @FXML
     private Button deleteStudentButton;
-
     @FXML
     private Button addStudentButton;
 
@@ -48,16 +32,12 @@ public class HelloController {
 
     public void initialize(){
         deleteStudentButton.setDisable(true);
+        onHelloButtonClick();
     }
 
     @FXML
     protected void onHelloButtonClick() {
         students = CollegeDB.getStudents();
-//        StringBuilder listOfStudents = new StringBuilder();
-//        for ( Student student : students ){
-//            listOfStudents.append(student.toString()).append("\n");
-//        }
-//        welcomeText.setText(listOfStudents.toString());
         studentListView.getItems().clear();
         studentListView.getItems().addAll(students);
     }
@@ -65,16 +45,24 @@ public class HelloController {
     @FXML
     protected void selectedStudentButtonClicked() {
         Student selectedStudent = studentListView.getSelectionModel().getSelectedItem();
-        welcomeText.setText(selectedStudent.toString());
 
-        deleteStudentButton.setDisable(false);
-
+        if(selectedStudent != null){
+            welcomeText.setText(selectedStudent.toString());
+            deleteStudentButton.setDisable(false);
+        }
     }
 
     @FXML
     protected void addStudentButtonClicked() {
-        Student student = new Student(0, firstNameTextField.getText(), lastNameTextField.getText(), majorTextField.getText(), Double.parseDouble(gpaTextField.getText()));
-        CollegeDB.addStudent(student);
+
+        Double gpa;
+        try{
+            gpa = Double.parseDouble(gpaTextField.getText());
+            Student student = new Student(0, firstNameTextField.getText(), lastNameTextField.getText(), majorTextField.getText(), gpa);
+            CollegeDB.addStudent(student);
+        } catch (NumberFormatException e){
+            showError("GPA has to be a floating number");
+        }
 
         // reload list of students
         onHelloButtonClick();
@@ -85,8 +73,10 @@ public class HelloController {
     protected void deleteStudentButtonClicked() {
 
         Student selectedStudent = studentListView.getSelectionModel().getSelectedItem();
-        CollegeDB.deleteStudent(selectedStudent);
 
+        if(selectedStudent != null){
+            CollegeDB.deleteStudent(selectedStudent);
+        }
         // reload list of students
         onHelloButtonClick();
 
@@ -107,5 +97,11 @@ public class HelloController {
 
         studentListView.getItems().clear();
         studentListView.getItems().addAll(filteredStudents);
+    }
+
+    private void showError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message);
+        alert.setHeaderText(null);
+        alert.showAndWait();
     }
 }

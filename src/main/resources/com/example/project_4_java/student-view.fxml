@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox spacing="20.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4_java.StudentController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+        <Label fx:id="welcomeText" />
+        <TextField fx:id="studentFilterTextField" onKeyTyped="#studentFilterTyped" />
+        <ListView fx:id="studentListView" prefHeight="200.0" prefWidth="200.0" />
+        <Button fx:id="selectStudentButton" mnemonicParsing="false" onAction="#selectedStudentButtonClicked" text="Select Student" />
+        <Button onAction="#onHelloButtonClick" text="Refresh" />
+    </VBox>
+
+    <GridPane hgap="10.0" vgap="10.0" prefWidth="320.0">
+        <columnConstraints>
+            <ColumnConstraints minWidth="75.0" />
+            <ColumnConstraints hgrow="ALWAYS" />
+        </columnConstraints>
+        <Label text="First Name" GridPane.rowIndex="0" />
+        <TextField fx:id="firstNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Label text="last Name" GridPane.rowIndex="1" />
+        <TextField fx:id="lastNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label text="Major" GridPane.rowIndex="2" />
+        <TextField fx:id="majorTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label text="GPA" GridPane.rowIndex="3" />
+        <TextField fx:id="gpaTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button fx:id="addStudentButton" mnemonicParsing="false" onAction="#addStudentButtonClicked" text="Add Student" GridPane.rowIndex="4" maxWidth="Infinity"/>
+        <Button fx:id="deleteStudentButton" mnemonicParsing="false" onAction="#deleteStudentButtonClicked" text="Delete Selected Student" GridPane.rowIndex="5" maxWidth="Infinity"/>
+    </GridPane>
+</HBox>
